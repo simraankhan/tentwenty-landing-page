@@ -9,17 +9,19 @@ const Home = () => {
       <div className="w-full z-2 sm:absolute sm:top-3">
         <Navbar />
       </div>
-      <section>
-        <BannerSlider />
-      </section>
-      <section className="mt-20">
-        <Products />
-      </section>
-      <section className="pb-20 mt-10">
-        <div className="px-2">
-          <CardSlider />
-        </div>
-      </section>
+      <main>
+        <section>
+          <BannerSlider />
+        </section>
+        <section className="mt-20">
+          <Products />
+        </section>
+        <section className="pb-20 mt-10">
+          <div className="px-2">
+            <CardSlider />
+          </div>
+        </section>
+      </main>
     </>
   )
 }

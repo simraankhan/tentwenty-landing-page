@@ -13,7 +13,6 @@ const NavItems = navItems.map(({ href, id, title }) => (
 const Navbar = () => {
     return (
         <nav>
-
             <div className='p-3 bg-white flex items-center'>
                 <Drawer direction='left'>
                     <DrawerTrigger className='flex-1 sm:hidden'>
