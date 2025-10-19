@@ -4,14 +4,14 @@ import { useState } from 'react'
 import { motion } from 'motion/react'
 import { Swiper, SwiperClass, SwiperSlide } from 'swiper/react';
 import { Autoplay } from 'swiper/modules'
+import SliderPagination from './SliderPagination';
+import Image from 'next/image';
+import { BANNER_SLIDER_DURATION, bannerSlider } from '@/constants';
 
 
 import 'swiper/css';
 import "swiper/css/autoplay";
 
-import { BANNER_SLIDER_DURATION, bannerSlider } from '@/constants';
-import Image from 'next/image';
-import SliderNext from './SliderNext';
 
 const BannerSlider = () => {
     const [swiperRef, setSwiperRef] = useState<SwiperClass | null>(null);
@@ -25,27 +25,29 @@ const BannerSlider = () => {
             onSlideChange={(swiper) => setSwiperRef({ ...swiper })}
         >
             {bannerSlider.map(({ id, image, title, description }, index) => (
-                <SwiperSlide key={id} className='relative'>
+                <SwiperSlide className='relative' key={id}>
+                    {/* Additional key to remount the animation when slide changes*/}
                     <motion.div
-                        initial={{ scaleY: 0 }}
+                        initial={{ scaleY: 0, }}
                         animate={{ scaleY: 1 }}
                         exit={{ scaleY: 0 }}
-                        transition={{ duration: 3, ease: [0.83, 0, 0.17, 1] }}
+                        transition={{ duration: 1, velocity: 0.5, ease: "easeOut" }}
+                        key={`${id}-${Date.now()}`}
                     >
                         <div className='bg-[#00000088] absolute size-full' />
                         <Image
                             src={image}
                             alt={title}
                             width={1000}
-                            height={400}
-                            className='w-full h-[400px] object-cover'
+                            height={600}
+                            className='w-full h-[600px] aspect-[16/9] object-cover'
                             quality={100}
                         />
-                        <div className='absolute text-white top-[30%] left-10'>
+                        <div className='absolute text-white top-[30%] left-[1%]'>
                             <p className='text-xs sm:text-sm mb-5'>{title}</p>
                             <h1 className='sm:text-2xl font-medium'>{description}</h1>
                             <div className='mt-10'>
-                                <SliderNext
+                                <SliderPagination
                                     bannerIndex={index}
                                     banners={bannerSlider}
                                     swiperRef={swiperRef}

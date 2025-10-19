@@ -1,15 +1,16 @@
 "use client";
 
 import { BANNER_SLIDER_DURATION } from '@/constants';
+import { motion } from 'motion/react';
 import React, { useEffect, useRef, useState } from 'react'
 import { SwiperClass, useSwiper } from 'swiper/react';
 
-interface SliderNextProps {
+interface SliderPaginationProps {
     banners: Banner[];
     bannerIndex: number;
     swiperRef: SwiperClass | null;
 }
-const SliderNext = ({ bannerIndex, banners, swiperRef }: SliderNextProps) => {
+const SliderPagination = ({ bannerIndex, banners, swiperRef }: SliderPaginationProps) => {
     const [progress, setProgress] = useState(0);
     const swiper = useSwiper();
 
@@ -61,12 +62,21 @@ const SliderNext = ({ bannerIndex, banners, swiperRef }: SliderNextProps) => {
                         }}
                     />
                 </svg>
-                <div style={{ backgroundImage: `url(${image})` }} className={`cursor-pointer flex items-center justify-center bg-cover bg-center flex-1 bg-no-repeatc z-1`} onClick={() => swiper.slideNext()}>
+                <motion.div
+                    initial={{ scaleY: 0, }}
+                    animate={{ scaleY: 1, }}
+                    exit={{ scaleY: 0, }}
+                    transition={{ duration: 1.5, ease: "easeOut" }}
+                    style={{ backgroundImage: `url(${image})` }}
+                    className={`cursor-pointer flex items-center justify-center bg-cover bg-center flex-1 bg-no-repeatc z-1`}
+                    onClick={() => swiper.slideNext()}
+                    key={nextBannerIdx}
+                >
                     <span>Next</span>
-                </div>
+                </motion.div>
             </div>
             <div className='flex items-center gap-x-3'>
-                <span className='text-sm font-medium'>{String(bannerIndex + 1).padStart(2, '0')}</span>
+                <motion.span initial={{ opacity: 0.5, y: 15 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 2, ease: "easeOut" }} className='text-sm font-medium'>{String(bannerIndex + 1).padStart(2, '0')}</motion.span>
                 <div className='h-[1px] w-[100px] bg-white' />
                 <span className='text-sm font-medium'>{String(banners.length).padStart(2, '0')}</span>
             </div>
@@ -74,4 +84,4 @@ const SliderNext = ({ bannerIndex, banners, swiperRef }: SliderNextProps) => {
     )
 }
 
-export default SliderNext;
+export default SliderPagination;
