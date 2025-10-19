@@ -2,20 +2,18 @@
 
 import { BANNER_SLIDER_DURATION } from '@/constants';
 import React, { useEffect, useRef, useState } from 'react'
-import { useSwiper } from 'swiper/react';
+import { SwiperClass, useSwiper } from 'swiper/react';
 
 interface SliderNextProps {
     banners: Banner[];
     bannerIndex: number;
-    bannerId: string;
+    swiperRef: SwiperClass | null;
 }
-const SliderNext = ({ bannerIndex, banners, bannerId }: SliderNextProps) => {
+const SliderNext = ({ bannerIndex, banners, swiperRef }: SliderNextProps) => {
     const [progress, setProgress] = useState(0);
     const swiper = useSwiper();
 
     useEffect(() => {
-        console.log("useEffect", bannerId);
-
         const start = Date.now();
         const timer = setInterval(() => {
             const elapsed = Date.now() - start;
@@ -26,7 +24,7 @@ const SliderNext = ({ bannerIndex, banners, bannerId }: SliderNextProps) => {
             }
         }, 30);
         return () => clearInterval(timer);
-    }, [bannerId]);
+    }, [swiperRef]);
 
     const nextRef = useRef<HTMLDivElement>(null);
 
@@ -43,7 +41,7 @@ const SliderNext = ({ bannerIndex, banners, bannerId }: SliderNextProps) => {
 
 
     return (
-        <div className='flex items-center gap-x-3'>
+        <div className='flex flex-col sm:flex-row items-center gap-x-3'>
             <div ref={nextRef} className='flex size-25 border border-gray-200 p-3 relative'>
                 <svg
                     width={width}

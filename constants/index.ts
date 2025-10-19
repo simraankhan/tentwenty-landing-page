@@ -17,4 +17,15 @@ const bannerSlider: Banner[] = [
 
 const BANNER_SLIDER_DURATION = 4000;
 
-export { navItems, bannerSlider, BANNER_SLIDER_DURATION };
+const secondSlider: Banner[] = [
+    { id: uuidv4(), title: "Client 1", image: "/assets/images/card-img-1.jpg", description: "This is some description about the client", startedYear: 2017 },
+    { id: uuidv4(), title: "Client 2", image: "/assets/images/card-img-2.jpg", description: "This is some description about the client", startedYear: 2015 },
+    { id: uuidv4(), title: "Client 3", image: "/assets/images/card-img-3.jpg", description: "This is some description about the client", startedYear: 2022 },
+    { id: uuidv4(), title: "Client 4", image: "/assets/images/card-img-4.jpg", description: "This is some description about the client" },
+    { id: uuidv4(), title: "Client 5", image: "/assets/images/card-img-1.jpg", description: "This is some description about the client", startedYear: 2017 },
+    { id: uuidv4(), title: "Client 6", image: "/assets/images/card-img-2.jpg", description: "This is some description about the client", startedYear: 2015 },
+    { id: uuidv4(), title: "Client 7", image: "/assets/images/card-img-3.jpg", description: "This is some description about the client", startedYear: 2022 },
+    { id: uuidv4(), title: "Client 8", image: "/assets/images/card-img-4.jpg", description: "This is some description about the client" },
+]
+
+export { navItems, bannerSlider, BANNER_SLIDER_DURATION, secondSlider };

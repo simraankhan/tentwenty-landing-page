@@ -9,4 +9,5 @@ interface Banner {
     title: string;
     image: string;
     description: string;
+    startedYear?: number;
 }
